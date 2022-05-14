@@ -52,7 +52,7 @@ bot.command('batmeme', ctx => {
 })
 
 
-bot.command('megababy', ctx => {
+bot.command('emotion', ctx => {
     console.log(ctx.update.message.text);
     var arr1 = ctx.update.message.text.split(' ');
     var num = parseInt(arr1[1])
