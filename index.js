@@ -1,7 +1,7 @@
 const { Telegraf } = require('telegraf');
 require('dotenv').config(); //initialize dotenv
 const bot = new Telegraf(process.env.CLIENT_TOKEN);
-const chatID = "";
+const chatID = -1001590269527;
 const MemeArray = [
     "100percent",
     "brb",
@@ -32,18 +32,14 @@ bot.command('batmeme', ctx => {
     bot.telegram.sendPhoto(ctx.chat.id, {source: `./memes/${filenm}`}, {
     })
 })
-/*
+
 setInterval( async () => {
     var price = 0;
     try{
-        price  = await getPrice();
-        await client.user.setPresence({
-            status: "idle",  //You can show online, idle....
-            activities: [{
-                name: `$${parseFloat(price).toFixed(2)}/Million`,  //The message shown
-                type: "PLAYING" //PLAYING: WATCHING: LISTENING: STREAMING:
-            }]
-        });
+        var filenm =  `${MemeArray[getRandomInt()]}.jpg`
+
+    bot.telegram.sendPhoto(chatID, {source: `./memes/${filenm}`}, {
+    })
     }catch(error){
         console.log("error caught: " + error);
     }
