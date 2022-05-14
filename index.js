@@ -47,7 +47,7 @@ setInterval( async () => {
     
     //console.log(price)
 }, 10000); 
-*/
+
 bot.catch(err => console.log(err));
 bot.start(ctx => ctx.reply("Started"));
 
