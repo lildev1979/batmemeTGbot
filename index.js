@@ -1,7 +1,7 @@
-import * as Telegraf from 'telegraf';
+const { Telegraf } = require('telegraf');
 require('dotenv').config(); //initialize dotenv
 const bot = new Telegraf(process.env.CLIENT_TOKEN);
-const chatID = 
+const chatID = "";
 const MemeArray = [
     "100percent",
     "brb",
