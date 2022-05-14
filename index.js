@@ -26,27 +26,12 @@ bot.command('start', ctx => {
 })
 
 bot.command('batmeme', ctx => {
-    console.log(ctx.chat.id)
+    console.log(ctx)
     var filenm =  `${MemeArray[getRandomInt()]}.jpg`
 
     bot.telegram.sendPhoto(ctx.chat.id, {source: `./memes/${filenm}`}, {
     })
 })
-
-setInterval( async () => {
-    var price = 0;
-    try{
-        var filenm =  `${MemeArray[getRandomInt()]}.jpg`
-
-    bot.telegram.sendPhoto(chatID, {source: `./memes/${filenm}`}, {
-    })
-    }catch(error){
-        console.log("error caught: " + error);
-    }
-    
-    
-    //console.log(price)
-}, 10000); 
 
 bot.catch(err => console.log(err));
 bot.start(ctx => ctx.reply("Started"));
