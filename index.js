@@ -26,8 +26,17 @@ bot.command('start', ctx => {
 })
 
 bot.command('batmeme', ctx => {
-    console.log(ctx)
-    var filenm =  `${MemeArray[getRandomInt()]}.jpg`
+    console.log(ctx.update.message.text);
+    var arr1 = ctx.update.message.text.split(' ');
+    var num = parseInt(arr1[1])
+    var number = 0;
+    if(isNaN(num) || num > (MemeArray.length -1)){
+        number = getRandomInt();
+    }else{
+        number = num;
+    }
+   
+    var filenm =  `${MemeArray[number]}.jpg`
 
     bot.telegram.sendPhoto(ctx.chat.id, {source: `./memes/${filenm}`}, {
     })
