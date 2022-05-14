@@ -14,16 +14,25 @@ const MemeArray = [
     "ngmi",
     "swigscarling"
     ];
-
-    function getRandomInt() {
-        return Math.floor(Math.random() * MemeArray.length);
-      }
+const GifArray = [
+    "Happy",
+    "Hungry",
+    "Playful",
+    "Sleepy",
+    "Sad"
+    ];
+function getRandomInt() {
+    return Math.floor(Math.random() * MemeArray.length);
+    }
 
 bot.command('start', ctx => {
     console.log(ctx.from)
     bot.telegram.sendMessage(ctx.chat.id, 'Hi There BatmanMeme_Bot here. use command batmeme for a meme', {
     })
 })
+function getRandomState() {
+    return Math.floor(Math.random() * GifArray.length);
+  }
 
 bot.command('batmeme', ctx => {
     console.log(ctx.update.message.text);
@@ -39,6 +48,24 @@ bot.command('batmeme', ctx => {
     var filenm =  `${MemeArray[number]}.jpg`
 
     bot.telegram.sendPhoto(ctx.chat.id, {source: `./memes/${filenm}`}, {
+    })
+})
+
+
+bot.command('megababy', ctx => {
+    console.log(ctx.update.message.text);
+    var arr1 = ctx.update.message.text.split(' ');
+    var num = parseInt(arr1[1])
+    var number = 0;
+    if(isNaN(num) || num > (GifArray.length -1)){
+        number = getRandomState();
+    }else{
+        number = num;
+    }
+   
+    var filenm =  `${GifArray[number]}.gif`
+
+    bot.telegram.sendPhoto(ctx.chat.id, {source: `./gifs/${filenm}`}, {
     })
 })
 
