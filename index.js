@@ -65,7 +65,7 @@ bot.command('megababy', ctx => {
    
     var filenm =  `${GifArray[number]}.gif`
 
-    bot.telegram.sendPhoto(ctx.chat.id, {source: `./gifs/${filenm}`}, {
+    bot.telegram.sendAnimation(ctx.chat.id, {source: `./gifs/${filenm}`}, {
     })
 })
 
