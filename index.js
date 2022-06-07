@@ -2315,6 +2315,7 @@ function Connect(){
                 });
                    
            
+            })
         })
         .on('changed', function(event){
             // remove event from local database
@@ -2326,9 +2327,10 @@ function Connect(){
         });
 
 
-        myContract.events.EvTokenRemovedFromSale({
+    myContract.events.EvTokenRemovedFromSale({
         }, function(error, event){})
         .on("connected", function(subscriptionId){
+            console.log("tokenremovedsub");
             console.log(subscriptionId);
         })
         .on('data', async function(event){
@@ -2357,9 +2359,10 @@ function Connect(){
                     };
                 });
             })
-            }).on("error", (error) => {
-                console.error(error.message);
-            });
+        })
+        .on("error", (error) => {
+            console.error(error.message);
+        });
             
             
         
