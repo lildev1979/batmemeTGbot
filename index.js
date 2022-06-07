@@ -2313,14 +2313,7 @@ function Connect(){
                         console.error(error.message);
                     };
                 });
-            console.log(event.returnValues.id)
-            var myMessage = "<b>\  Attention diamond handed Megafam!  </b>\n\n"
-            myMessage += "<b>\    Someone Listed an NFT!  </b>\n\n"
-            myMessage += `<b>\     ID: ${event.returnValues.id}   </b>\n`
-            myMessage += `<b>\     Price: ${parseFloat(Web3.utils.fromWei(event.returnValues.price, 'ether')).toFixed(3)} BNB  </b>\n\n`
-            myMessage += `\n       <a href= 'https://www.megababyinft.com/nft/${event.returnValues.id}/show'>Buy Link</a>` ; 
-            bot.telegram.sendMessage(chatID,myMessage , { parse_mode: 'HTML'
-                    })
+                   
            
         })
         .on('changed', function(event){
@@ -2367,7 +2360,6 @@ function Connect(){
             }).on("error", (error) => {
                 console.error(error.message);
             });
-            console.log(event.returnValues.id)
             
             
         
