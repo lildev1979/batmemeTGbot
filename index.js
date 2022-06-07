@@ -1071,15 +1071,16 @@ function Connect(){
             console.log(receipt);
         });
 
-        
+
         myContract.events.EvTokenSold({
         }, function(error, event){})
         .on("connected", function(subscriptionId){
             console.log(subscriptionId);
         })
         .on('data', function(event){
-            console.log(event.returnValues.id)
-            var myMessage = "<b>\  Someone Bought an NFT!  </b>\n\n"
+            console.log(event.returnValues.id);
+            var myMessage = "<b>\  Attention diamond handed Megafam!  </b>\n\n"
+            myMessage += "<b>\      Someone Bought an NFT!  </b>\n"
             myMessage += `<b>\     ID: ${event.returnValues.id}   </b>\n`
             myMessage += `<b>\    Bought By: ${event.returnValues.buyer.substring(0, 8)}...  </b>\n`
             myMessage += `<b>\    For: ${parseFloat(Web3.utils.fromWei(event.returnValues.price, 'ether')).toFixed(3)} BNB  </b>\n\n`
