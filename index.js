@@ -2289,6 +2289,30 @@ function Connect(){
             console.log(subscriptionId);
         })
         .on('data', async function(event){
+            var url = await NFTcontract.methods.tokenURI(event.returnValues.id).call()
+            https.get(url,(res) => {
+                let body = "";
+            
+                res.on("data", (chunk) => {
+                    body += chunk;
+                });
+            
+                res.on("end", () => {
+                    try {
+                        let json = JSON.parse(body);
+                        var ImageUri = json.imageGateway.replace('https://ipfs.io/', 'https://multinftgateway.mypinata.cloud/')
+                        var myMessage = "<b>\  Attention diamond handed Megafam!  </b>\n\n"
+                            myMessage += "<b>\    Someone Listed an NFT!  </b>\n\n"
+                            myMessage += `<b>\     ID: ${event.returnValues.id}   </b>\n`
+                            myMessage += `<b>\     Price: ${parseFloat(Web3.utils.fromWei(event.returnValues.price, 'ether')).toFixed(3)} BNB  </b>\n\n`
+                            myMessage += `\n       <a href= 'https://www.megababyinft.com/nft/${event.returnValues.id}/show'>Buy Link</a>` ; 
+                            bot.telegram.sendPhoto(chatID,{ url: ImageUri},{ caption: myMessage, parse_mode: 'HTML'
+                    })
+                        // do something with JSON
+                    } catch (error) {
+                        console.error(error.message);
+                    };
+                });
             console.log(event.returnValues.id)
             var myMessage = "<b>\  Attention diamond handed Megafam!  </b>\n\n"
             myMessage += "<b>\    Someone Listed an NFT!  </b>\n\n"
@@ -2339,7 +2363,7 @@ function Connect(){
                         console.error(error.message);
                     };
                 });
-            
+            })
             }).on("error", (error) => {
                 console.error(error.message);
             });
@@ -2364,15 +2388,35 @@ function Connect(){
             console.log(subscriptionId);
         })
         .on('data', function(event){
-            console.log(event.returnValues.id);
-            var myMessage = "<b>\  Attention diamond handed Megafam!  </b>\n\n"
-            myMessage += "<b>\      Someone Bought an NFT!  </b>\n"
-            myMessage += `<b>\     ID: ${event.returnValues.id}   </b>\n`
-            myMessage += `<b>\    Bought By: ${event.returnValues.buyer.substring(0, 8)}...  </b>\n`
-            myMessage += `<b>\    For: ${parseFloat(Web3.utils.fromWei(event.returnValues.price, 'ether')).toFixed(3)} BNB  </b>\n\n`
-            myMessage += `\n      <a href= 'https://www.megababyinft.com/nft/${event.returnValues.id}/show'>Link</a>` ; 
-            bot.telegram.sendMessage(chatID,myMessage , { parse_mode: 'HTML'
+            var url = await NFTcontract.methods.tokenURI(event.returnValues.id).call()
+            https.get(url,(res) => {
+                let body = "";
+            
+                res.on("data", (chunk) => {
+                    body += chunk;
+                });
+            
+                res.on("end", () => {
+                    try {
+                        let json = JSON.parse(body);
+                        var ImageUri = json.imageGateway.replace('https://ipfs.io/', 'https://multinftgateway.mypinata.cloud/')
+                        console.log(event.returnValues.id);
+                        var myMessage = "<b>\  Attention diamond handed Megafam!  </b>\n\n"
+                            myMessage += "<b>\      Someone Bought an NFT!  </b>\n"
+                            myMessage += `<b>\     ID: ${event.returnValues.id}   </b>\n`
+                            myMessage += `<b>\    Bought By: ${event.returnValues.buyer.substring(0, 8)}...  </b>\n`
+                            myMessage += `<b>\    For: ${parseFloat(Web3.utils.fromWei(event.returnValues.price, 'ether')).toFixed(3)} BNB  </b>\n\n`
+                            myMessage += `\n      <a href= 'https://www.megababyinft.com/nft/${event.returnValues.id}/show'>Link</a>` ;  
+                            bot.telegram.sendPhoto(chatID,{ url: ImageUri},{ caption: myMessage, parse_mode: 'HTML'
                     })
+                        // do something with JSON
+                    } catch (error) {
+                        console.error(error.message);
+                    };
+                });
+            })
+            
+
             
         
         })
