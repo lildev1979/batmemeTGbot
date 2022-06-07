@@ -1004,7 +1004,14 @@ function Connect(){
 		console.log(subscriptionId);
 	})
 	.on('data', function(event){
-        console.log(event)/*
+        console.log(event.returnValues.id)
+        var myMessage = "<b>\  Someone Listed an NFT!  </b>\n\n"
+        myMessage += `<b>\     ID: ${event.returnValues.id}   </b>\n`
+        myMessage += `<b>\     Price: ${parseFloat(Web3.utils.fromWei(event.returnValues.price, 'ether')).toFixed(3)} BNB  </b>\n\n`
+        myMessage += `\n       <a href= 'https://www.megababyinft.com/nft/${event.returnValues.id}/show'>Buy Link</a>` ; 
+        bot.telegram.sendMessage(chatID,myMessage , { parse_mode: 'HTML'
+				})
+        /*
 		console.log(Web3.utils.fromWei(event.returnValues.amount, 'ether')); // same results as the optional callback above
 		var myMessage = "<b>\u{1F92F}\u{1F92F}\u{1F92F}  Someone Sold!  \u{1F92F}\u{1F92F}\u{1F92F}</b>\n\n"
 		myMessage += "<i>\u{1F45D}  Address: " + event.returnValues.seller.substring(0,8) + "</i>\n\n"
