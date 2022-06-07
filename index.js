@@ -8,7 +8,7 @@ var provider = new Web3.providers.WebsocketProvider('wss://bsc-ws-node.nariox.or
 var web3 = new Web3(provider);
 
 const CONTRACT_ADDRESS = "0x33e4D2eea06b62503A87F4eD3d6CA9ad30a94898";
-const ABI = [
+const NFTABI = [
 	{
 		"anonymous": false,
 		"inputs": [
@@ -1289,7 +1289,7 @@ const ABI = [
 ]
 
 const NFTCONTRACT_ADDRESS = "0x8B4CFc3F8aA114d66040517f5dA14F790c900014";
-const NFTABI = [
+const ABI = [
 	{
 		"inputs": [],
 		"stateMutability": "nonpayable",
