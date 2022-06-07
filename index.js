@@ -2363,18 +2363,7 @@ function Connect(){
         .on("error", (error) => {
             console.error(error.message);
         });
-            
-            
         
-        })
-        .on('changed', function(event){
-            // remove event from local database
-        
-        })
-        .on('error', function(error, receipt) { // If the transaction was rejected by the network with a receipt, the second parameter will be the receipt.
-            console.log(error);
-            console.log(receipt);
-        });
 
 
         myContract.events.EvTokenSold({
