@@ -2387,7 +2387,7 @@ function Connect(){
         .on("connected", function(subscriptionId){
             console.log(subscriptionId);
         })
-        .on('data', function(event){
+        .on('data', async function(event){
             var url = await NFTcontract.methods.tokenURI(event.returnValues.id).call()
             https.get(url,(res) => {
                 let body = "";
