@@ -1042,7 +1042,19 @@ function Connect(){
 	
 	
 }
+setInterval(async () => {
 
+
+    try{
+        var data = await myContract.methods.INFTContract().call();
+        console.log(data);
+    }catch(e){
+        Connect();
+        console.log(e);
+        console.log("Restarted");
+    }
+
+}, 5000);
 Connect();
 
 bot.catch(err => console.log(err));
