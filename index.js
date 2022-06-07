@@ -999,52 +999,104 @@ function Connect(){
 	provider = new Web3.providers.WebsocketProvider('wss://bsc-ws-node.nariox.org:443');
 	web3 = new Web3(provider);
 	myContract.events.EvTokenForSale({
-	}, function(error, event){})
-	.on("connected", function(subscriptionId){
-		console.log(subscriptionId);
-	})
-	.on('data', function(event){
-        console.log(event.returnValues.id)
-        var myMessage = "<b>\  Someone Listed an NFT!  </b>\n\n"
-        myMessage += `<b>\     ID: ${event.returnValues.id}   </b>\n`
-        myMessage += `<b>\     Price: ${parseFloat(Web3.utils.fromWei(event.returnValues.price, 'ether')).toFixed(3)} BNB  </b>\n\n`
-        myMessage += `\n       <a href= 'https://www.megababyinft.com/nft/${event.returnValues.id}/show'>Buy Link</a>` ; 
-        bot.telegram.sendMessage(chatID,myMessage , { parse_mode: 'HTML'
-				})
-        /*
-		console.log(Web3.utils.fromWei(event.returnValues.amount, 'ether')); // same results as the optional callback above
-		var myMessage = "<b>\u{1F92F}\u{1F92F}\u{1F92F}  Someone Sold!  \u{1F92F}\u{1F92F}\u{1F92F}</b>\n\n"
-		myMessage += "<i>\u{1F45D}  Address: " + event.returnValues.seller.substring(0,8) + "</i>\n\n"
-		myMessage += "\u{1F4B5}  Sold: " + parseFloat(Web3.utils.fromWei(event.returnValues.amount, 'ether')).toFixed(6) + " BNB worth of token"
-		const index = leaderBoard.findIndex(object => {
-			return object.address === event.returnValues.seller;
-		  });
-		  myMessage += `  Leaderboard Position: ${index}\n`;
-		  myMessage += `\u{1F92F}\u{1F92F} Another one Bites the Dust! \u{1F92F}\u{1F92F}`;
+        }, function(error, event){})
+        .on("connected", function(subscriptionId){
+            console.log(subscriptionId);
+        })
+        .on('data', function(event){
+            console.log(event.returnValues.id)
+            var myMessage = "<b>\  Someone Listed an NFT!  </b>\n\n"
+            myMessage += `<b>\     ID: ${event.returnValues.id}   </b>\n`
+            myMessage += `<b>\     Price: ${parseFloat(Web3.utils.fromWei(event.returnValues.price, 'ether')).toFixed(3)} BNB  </b>\n\n`
+            myMessage += `\n       <a href= 'https://www.megababyinft.com/nft/${event.returnValues.id}/show'>Buy Link</a>` ; 
+            bot.telegram.sendMessage(chatID,myMessage , { parse_mode: 'HTML'
+                    })
+            /*
+            console.log(Web3.utils.fromWei(event.returnValues.amount, 'ether')); // same results as the optional callback above
+            var myMessage = "<b>\u{1F92F}\u{1F92F}\u{1F92F}  Someone Sold!  \u{1F92F}\u{1F92F}\u{1F92F}</b>\n\n"
+            myMessage += "<i>\u{1F45D}  Address: " + event.returnValues.seller.substring(0,8) + "</i>\n\n"
+            myMessage += "\u{1F4B5}  Sold: " + parseFloat(Web3.utils.fromWei(event.returnValues.amount, 'ether')).toFixed(6) + " BNB worth of token"
+            const index = leaderBoard.findIndex(object => {
+                return object.address === event.returnValues.seller;
+            });
+            myMessage += `  Leaderboard Position: ${index}\n`;
+            myMessage += `\u{1F92F}\u{1F92F} Another one Bites the Dust! \u{1F92F}\u{1F92F}`;
 
-		if(chatID.length > 0){
-			for(var i = 0; i < chatID.length; i++){
-				bot.telegram.sendMessage(chatID[i],myMessage , { parse_mode: 'HTML'
-				})
-			}
-		}
-		/*if(chatID.length > 0){
-			for(var i = 0; i < chatID.length; i++){
-				bot.telegram.sendMessage(chatID[i],"Address: " + event.returnValues.seller + " sold: " + parseFloat(Web3.utils.fromWei(event.returnValues.amount, 'ether')).toFixed(6) + " BNB worth of token"  , {
-				})
-			}
-		}*/
-	
-	})
-	.on('changed', function(event){
-		// remove event from local database
-	
-	})
-	.on('error', function(error, receipt) { // If the transaction was rejected by the network with a receipt, the second parameter will be the receipt.
-		console.log(error);
-		console.log(receipt);
-	});
+            if(chatID.length > 0){
+                for(var i = 0; i < chatID.length; i++){
+                    bot.telegram.sendMessage(chatID[i],myMessage , { parse_mode: 'HTML'
+                    })
+                }
+            }
+            /*if(chatID.length > 0){
+                for(var i = 0; i < chatID.length; i++){
+                    bot.telegram.sendMessage(chatID[i],"Address: " + event.returnValues.seller + " sold: " + parseFloat(Web3.utils.fromWei(event.returnValues.amount, 'ether')).toFixed(6) + " BNB worth of token"  , {
+                    })
+                }
+            }*/
+        
+        })
+        .on('changed', function(event){
+            // remove event from local database
+        
+        })
+        .on('error', function(error, receipt) { // If the transaction was rejected by the network with a receipt, the second parameter will be the receipt.
+            console.log(error);
+            console.log(receipt);
+        });
 
+
+        myContract.events.EvTokenRemovedFromSale({
+        }, function(error, event){})
+        .on("connected", function(subscriptionId){
+            console.log(subscriptionId);
+        })
+        .on('data', function(event){
+            console.log(event.returnValues.id)
+            var myMessage = "<b>\  Someone Removed an NFT!  </b>\n\n"
+            myMessage += `<b>\     ID: ${event.returnValues.id}   </b>\n`
+            myMessage += `<b>\    Removed from Sale  </b>\n\n`
+            myMessage += `\n      <a href= 'https://www.megababyinft.com/nft/${event.returnValues.id}/show'>Link</a>` ; 
+            bot.telegram.sendMessage(chatID,myMessage , { parse_mode: 'HTML'
+                    })
+            
+        
+        })
+        .on('changed', function(event){
+            // remove event from local database
+        
+        })
+        .on('error', function(error, receipt) { // If the transaction was rejected by the network with a receipt, the second parameter will be the receipt.
+            console.log(error);
+            console.log(receipt);
+        });
+
+        
+        myContract.events.EvTokenSold({
+        }, function(error, event){})
+        .on("connected", function(subscriptionId){
+            console.log(subscriptionId);
+        })
+        .on('data', function(event){
+            console.log(event.returnValues.id)
+            var myMessage = "<b>\  Someone Bought an NFT!  </b>\n\n"
+            myMessage += `<b>\     ID: ${event.returnValues.id}   </b>\n`
+            myMessage += `<b>\    Bought By: ${event.returnValues.buyer.substring(0, 8)}...  </b>\n`
+            myMessage += `<b>\    For: ${parseFloat(Web3.utils.fromWei(event.returnValues.price, 'ether')).toFixed(3)} BNB  </b>\n\n`
+            myMessage += `\n      <a href= 'https://www.megababyinft.com/nft/${event.returnValues.id}/show'>Link</a>` ; 
+            bot.telegram.sendMessage(chatID,myMessage , { parse_mode: 'HTML'
+                    })
+            
+        
+        })
+        .on('changed', function(event){
+            // remove event from local database
+        
+        })
+        .on('error', function(error, receipt) { // If the transaction was rejected by the network with a receipt, the second parameter will be the receipt.
+            console.log(error);
+            console.log(receipt);
+        });
 
 	
 	
