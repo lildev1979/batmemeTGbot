@@ -2302,10 +2302,10 @@ bot.command(['nftstat', 'stats'], ctx => {
                 var highestprice = Number(parseFloat(web3.utils.fromWei(`${array[array.length -1]}`)).toFixed(3))
                 var floorPrice = Number(parseFloat(web3.utils.fromWei(`${array[0]}`)).toFixed(3))
                 
-                var myMessage = "<b>  NFT STATS  </b>\n\n"
-                    myMessage += `<b>  NFTS for sale:  ${itemsForSale}   </b>\n\n`
-                    myMessage += `<b> FloorPrice: ${floorPrice} BNB  </b>\n`
-                    myMessage += `<b> RoofPrice: ${highestprice} BNB  </b>\n`
+                var myMessage = "<b>\u{1F433}      INFT STATS     \u{1F433}</b>\n\n"
+                    myMessage += `<b>    INFTS for sale:  ${itemsForSale}   </b>\n\n`
+                    myMessage += `<b>\u{1F92B}  FloorPrice: ${floorPrice} BNB  </b>\n`
+                    myMessage += `<b>\u{1F911}  RoofPrice: ${highestprice} BNB  </b>\n`
                     myMessage += `\n  <a href= 'https://www.megababyinft.com/marketPlace'>MarketPlace</a>` ; 
                 bot.telegram.sendAnimation(ctx.chat.id,{source: `./gifs/Happy.gif`},{ caption: myMessage, parse_mode: 'HTML'
                 })
