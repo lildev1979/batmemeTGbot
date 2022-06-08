@@ -2866,7 +2866,7 @@ const STAKINGABI = [
 
 let myContract = new web3.eth.Contract(ABI, CONTRACT_ADDRESS);
 let NFTcontract = new web3.eth.Contract(NFTABI, NFTCONTRACT_ADDRESS);
-let STAKINGCONTRACT = new web3.eth.Contract(NFTABI, NFTCONTRACT_ADDRESS);
+let STAKINGCONTRACT = new web3.eth.Contract(STAKINGABI, STAKINGADDRESS);
 
 const chatID = -1001590269527;
 const MemeArray = [
