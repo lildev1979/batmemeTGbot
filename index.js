@@ -2280,7 +2280,7 @@ bot.command(['emotion', 'emote', 'mb'], ctx => {
 })
 
 
-bot.command(['nftstat', 'stats']), ctx => {
+bot.command(['nftstat', 'stats'], ctx => {
     let url = "https://www.megababyinft.com/nft/forsale"
     https.get(url,(res) => {
         let body = "";
@@ -2309,7 +2309,7 @@ bot.command(['nftstat', 'stats']), ctx => {
            
    
     })
-}
+})
 
 function Connect(){
 	provider = new Web3.providers.WebsocketProvider('wss://bsc-ws-node.nariox.org:443');
