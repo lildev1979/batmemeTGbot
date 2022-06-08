@@ -2292,9 +2292,11 @@ bot.command(['nftstat', 'stats'], ctx => {
         res.on("end", () => {
             try {
                 let json = JSON.parse(body);
-                var highestprice = Number(parseFloat(web3.utils.fromWei(`${body[1][body[1].length -1]}`)).toFixed(3))
-                var floorPrice = Number(parseFloat(web3.utils.fromWei(`${body[1][0]}`)).toFixed(3))
                 var itemsForSale = body[0].length;
+                console.log(body[1][itemsForSale - 1])
+                var highestprice = 1//Number(parseFloat(web3.utils.fromWei(`${body[1][body[1].length -1]}`)).toFixed(3))
+                var floorPrice = Number(parseFloat(web3.utils.fromWei(`${body[1][0]}`)).toFixed(3))
+                
                 var myMessage = "<b>\  NFT STATS  </b>\n\n"
                     myMessage += "<b>\    Someone Listed an NFT!  </b>\n\n"
                     myMessage += `<b>\     Number of INFTS for sale:  ${itemsForSale}   </b>\n`
