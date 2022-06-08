@@ -2291,9 +2291,9 @@ bot.command(['nftstat', 'stats'], ctx => {
     
         res.on("end", () => {
             try {
-                let json = JSON.parse(body);
-                console.log(json);
-                var itemsForSale = body['0'].length;
+                //let json = JSON.parse(body);
+                console.log(body);
+                var itemsForSale = body[0].length;
                 console.log(body['1'][itemsForSale - 1])
                 var highestprice = Number(parseFloat(web3.utils.fromWei(`${body['1'][body['1'].length -1]}`)).toFixed(3))
                 var floorPrice = Number(parseFloat(web3.utils.fromWei(`${body['1'][0]}`)).toFixed(3))
