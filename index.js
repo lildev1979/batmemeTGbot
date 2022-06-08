@@ -2291,17 +2291,17 @@ bot.command(['nftstat', 'stats'], ctx => {
     
         res.on("end", () => {
             try {
-                //let json = JSON.parse(body);
-                console.log(body);
-                var itemsForSale = body[0].length;
-                console.log(body['1'][itemsForSale - 1])
-                var highestprice = Number(parseFloat(web3.utils.fromWei(`${body['1'][body['1'].length -1]}`)).toFixed(3))
-                var floorPrice = Number(parseFloat(web3.utils.fromWei(`${body['1'][0]}`)).toFixed(3))
+                let json = JSON.parse(body);
+                console.log(json);
+                var itemsForSale = json[0].length;
+                console.log(json[1][itemsForSale - 1])
+                var highestprice = Number(parseFloat(web3.utils.fromWei(`${json[1][json[1].length -1]}`)).toFixed(3))
+                var floorPrice = Number(parseFloat(web3.utils.fromWei(`${json[1][0]}`)).toFixed(3))
                 
-                var myMessage = "<b>\  NFT STATS  </b>\n\n"
-                    myMessage += `<b>\INFTS for sale:  ${itemsForSale}   </b>\n`
-                    myMessage += `<b>\FloorPrice: ${floorPrice} BNB  </b>\n\n`
-                    myMessage += `<b>\RoofPrice: ${highestprice} BNB  </b>\n\n`
+                var myMessage = "<b>  NFT STATS  </b>\n\n"
+                    myMessage += `<b>  NFTS for sale:  ${itemsForSale}   </b>\n\n`
+                    myMessage += `<b> FloorPrice: ${floorPrice} BNB  </b>\n`
+                    myMessage += `<b> RoofPrice: ${highestprice} BNB  </b>\n`
                     myMessage += `\n  <a href= 'https://www.megababyinft.com/marketPlace'>MarketPlace</a>` ; 
                 bot.telegram.sendAnimation(ctx.chat.id,{source: `./gifs/Happy.gif`},{ caption: myMessage, parse_mode: 'HTML'
                 })
