@@ -2964,8 +2964,9 @@ bot.command(['nftstat', 'stats'], ctx => {
                     myMessage += `<b>    INFTS for sale:  ${itemsForSale}   </b>\n\n`
                     myMessage += `<b>\u{1F92B}  Floor Price: ${floorPrice} BNB  </b>\n`
                     myMessage += `<b>\u{1F911}  Roof Price: ${highestprice} BNB  </b>\n`
-                    myMessage += `<b>\u{1F911}  Total Staked: ${totalStaked} INFTs  </b>\n`
-                    myMessage += `\n  <a href= 'https://www.megababyinft.com/marketPlace'>MarketPlace</a>` ; 
+                    myMessage += `<b>\u{1F911}  Staked: ${totalStaked} INFTs  </b>\n`
+                    myMessage += `<b>\u{1F911}  Supply: 10,000 INFTs  </b>\n`
+                    myMessage += `\n      <a href= 'https://www.megababyinft.com/marketPlace'>MarketPlace</a>` ; 
                 bot.telegram.sendAnimation(ctx.chat.id,{source: `./gifs/Happy.gif`},{ caption: myMessage, parse_mode: 'HTML'
                 })
                 // do something with JSON*/
