@@ -2292,10 +2292,11 @@ bot.command(['nftstat', 'stats'], ctx => {
         res.on("end", () => {
             try {
                 let json = JSON.parse(body);
+                console.log(json);
                 var itemsForSale = body[0].length;
                 console.log(body[1][itemsForSale - 1])
                 var highestprice = 1//Number(parseFloat(web3.utils.fromWei(`${body[1][body[1].length -1]}`)).toFixed(3))
-                var floorPrice = Number(parseFloat(web3.utils.fromWei(`${body[1][0]}`)).toFixed(3))
+                var floorPrice = 0// Number(parseFloat(web3.utils.fromWei(`${body[1][0]}`)).toFixed(3))
                 
                 var myMessage = "<b>\  NFT STATS  </b>\n\n"
                     myMessage += "<b>\    Someone Listed an NFT!  </b>\n\n"
@@ -2306,7 +2307,6 @@ bot.command(['nftstat', 'stats'], ctx => {
                 bot.telegram.sendAnimation(ctx.chat.id,{source: `./gifs/Happy.gif`},{ caption: myMessage, parse_mode: 'HTML'
                 })
                 // do something with JSON*/
-                console.log(json);
             } catch (error) {
                 console.error(error.message);
             };
