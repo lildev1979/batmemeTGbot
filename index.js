@@ -4,7 +4,8 @@ const https = require('https');
 
 require('dotenv').config(); //initialize dotenv
 const bot = new Telegraf(process.env.CLIENT_TOKEN);
-var provider = new Web3.providers.WebsocketProvider('wss://bsc-ws-node.nariox.org:443');
+//var provider = new Web3.providers.WebsocketProvider('wss://bsc-ws-node.nariox.org:443');
+var provider = new Web3.providers.WebsocketProvider('wss://speedy-nodes-nyc.moralis.io/6c2c9ac1a2c0c4cd116f11a0/bsc/mainnet/ws')
 var web3 = new Web3(provider);
 
 const CONTRACT_ADDRESS = "0x33e4D2eea06b62503A87F4eD3d6CA9ad30a94898";
@@ -2980,8 +2981,9 @@ bot.command(['nftstat', 'stats'], ctx => {
 })
 
 function Connect(){
-	provider = new Web3.providers.WebsocketProvider('wss://bsc-ws-node.nariox.org:443');
+	provider = new Web3.providers.WebsocketProvider('wss://speedy-nodes-nyc.moralis.io/6c2c9ac1a2c0c4cd116f11a0/bsc/mainnet/ws');
 	web3 = new Web3(provider);
+	myContract = new web3.eth.Contract(ABI, CONTRACT_ADDRESS);
 	myContract.events.EvTokenForSale({
         }, function(error, event){})
         .on("connected", function(subscriptionId){
@@ -3000,11 +3002,11 @@ function Connect(){
                     try {
                         let json = JSON.parse(body);
                         var ImageUri = json.imageGateway.replace('https://ipfs.io/', 'https://multinftgateway.mypinata.cloud/')
-                        var myMessage = "<b>\  Attention diamond handed Megafam!  </b>\n\n"
-                            myMessage += "<b>\    Someone Listed an NFT!  </b>\n\n"
-                            myMessage += `<b>\     ID: ${event.returnValues.id}   </b>\n`
-                            myMessage += `<b>\     Price: ${parseFloat(Web3.utils.fromWei(event.returnValues.price, 'ether')).toFixed(3)} BNB  </b>\n\n`
-                            myMessage += `\n       <a href= 'https://www.megababyinft.com/nft/${event.returnValues.id}/show'>Buy Link</a>` ; 
+                        var myMessage = "<b>\u{1F4E2} Attention diamond handed Megafam!  </b>\n\n"
+                            myMessage += "<b>\u{1F37C} New baby Up For Adoption!  </b>\n\n"
+                            myMessage += `<b>\u{1FAAA} ID: ${event.returnValues.id}   </b>\n`
+                            myMessage += `<b>\u{1F4B0} Price: ${parseFloat(Web3.utils.fromWei(event.returnValues.price, 'ether')).toFixed(3)} BNB  </b>\n\n`
+                            myMessage += `\n \u{1F517}  <a href= 'https://www.megababyinft.com/nft/${event.returnValues.id}/show'>Buy Link</a>` ; 
                             bot.telegram.sendPhoto(chatID,{ url: ImageUri},{ caption: myMessage, parse_mode: 'HTML'
                     })
                         // do something with JSON
@@ -3045,11 +3047,10 @@ function Connect(){
                     try {
                         let json = JSON.parse(body);
                         var ImageUri = json.imageGateway.replace('https://ipfs.io/', 'https://multinftgateway.mypinata.cloud/')
-                        var myMessage = "<b>\  Attention diamond handed Megafam!  </b>\n\n"
-                            myMessage += "<b>\  Someone Removed an NFT!  </b>\n\n"
-                            myMessage += `<b>\     ID: ${event.returnValues.id}   </b>\n`
-                            myMessage += `<b>\    Removed from Sale  </b>\n\n`
-                            myMessage += `\n      <a href= 'https://www.megababyinft.com/nft/${event.returnValues.id}/show'>Link</a>` ; 
+                        var myMessage = "<b>\u{1F4E2} Attention diamond handed Megafam!  </b>\n\n"
+                            myMessage += "<b>\u{1F37C} Baby Removed from Adoption!  </b>\n"
+                            myMessage += `<b>\u{1FAAA} ID: ${event.returnValues.id}   </b>\n`
+                            myMessage += `\n \u{1F517} <a href= 'https://www.megababyinft.com/nft/${event.returnValues.id}/show'>Link</a>` ; 
                             bot.telegram.sendPhoto(chatID,{ url: ImageUri},{ caption: myMessage, parse_mode: 'HTML'
                     })
                         // do something with JSON
@@ -3084,15 +3085,15 @@ function Connect(){
                         let json = JSON.parse(body);
                         var ImageUri = json.imageGateway.replace('https://ipfs.io/', 'https://multinftgateway.mypinata.cloud/')
                         console.log(event.returnValues.id);
-                        var myMessage = "<b>\  Attention diamond handed Megafam!  </b>\n\n"
-                            myMessage += "<b>\      Someone Bought an NFT!  </b>\n"
-                            myMessage += `<b>\     ID: ${event.returnValues.id}   </b>\n`
-                            myMessage += `<b>\    Bought By: ${event.returnValues.buyer.substring(0, 8)}...  </b>\n`
-                            myMessage += `<b>\    For: ${parseFloat(Web3.utils.fromWei(event.returnValues.price, 'ether')).toFixed(3)} BNB  </b>\n\n`
+                        var myMessage = "<b>\u{1F4E2} Attention diamond handed Megafam!  </b>\n\n"
+                            myMessage += "<b>\u{1F37C} MegaBaby Adopted!  </b>\n"
+                            myMessage += `<b>\u{1FAAA} ID: ${event.returnValues.id}   </b>\n`
+                            myMessage += `<b>\u{1F60E} Bought By: ${event.returnValues.buyer.substring(0, 8)}...  </b>\n`
+                            myMessage += `<b>\u{1F4B0} For: ${parseFloat(Web3.utils.fromWei(event.returnValues.price, 'ether')).toFixed(3)} BNB  </b>\n\n`
                             var Stakedamt = await STAKINGCONTRACT.methods.balanceOf(event.returnValues.buyer).call()
                             var ownedAMT = await NFTcontract.methods.balanceOf(event.returnValues.buyer).call()
-                            myMessage += `<b>\    Buyer Owns: ${ownedAMT} INFTs  </b>\n`
-                            myMessage += `<b>\    Buyer Has Staked: ${Stakedamt} INFTs  </b>\n`
+                            myMessage += `<b>\u{1F5C2} Buyer Owns: ${ownedAMT} INFTs  </b>\n`
+                            myMessage += `<b>\u{1F510} Buyer Has Staked: ${Stakedamt} INFTs  </b>\n`
 
                             myMessage += `\n      <a href= 'https://www.megababyinft.com/nft/${event.returnValues.id}/show'>Link</a>` ;  
                             bot.telegram.sendPhoto(chatID,{ url: ImageUri},{ caption: myMessage, parse_mode: 'HTML'
