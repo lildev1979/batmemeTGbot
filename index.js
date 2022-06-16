@@ -3006,7 +3006,7 @@ function Connect(){
                         var ImageUri = json.imageGateway.replace('https://ipfs.io/', 'https://multinftgateway.mypinata.cloud/')
                         var myMessage = "<b>\u{1F4E2} Attention diamond handed Megafam!  </b>\n\n"
                             myMessage += "<b>\u{1F37C} New baby Up For Adoption!  </b>\n\n"
-                            myMessage += `<b>\u{1FAAA} ID: ${event.returnValues.id}   </b>\n`
+                            myMessage += `<b>\u{1F3AB} ID: ${event.returnValues.id}   </b>\n`
                             myMessage += `<b>\u{1F4B0} Price: ${parseFloat(Web3.utils.fromWei(event.returnValues.price, 'ether')).toFixed(3)} BNB  </b>\n\n`
                             myMessage += `\n \u{1F517}  <a href= 'https://www.megababyinft.com/nft/${event.returnValues.id}/show'>Buy Link</a>` ; 
                             bot.telegram.sendPhoto(chatID,{ url: ImageUri},{ caption: myMessage, parse_mode: 'HTML'
@@ -3051,7 +3051,7 @@ function Connect(){
                         var ImageUri = json.imageGateway.replace('https://ipfs.io/', 'https://multinftgateway.mypinata.cloud/')
                         var myMessage = "<b>\u{1F4E2} Attention diamond handed Megafam!  </b>\n\n"
                             myMessage += "<b>\u{1F37C} Baby Removed from Adoption!  </b>\n"
-                            myMessage += `<b>\u{1FAAA} ID: ${event.returnValues.id}   </b>\n`
+                            myMessage += `<b>\u{1F3AB} ID: ${event.returnValues.id}   </b>\n`
                             myMessage += `\n \u{1F517} <a href= 'https://www.megababyinft.com/nft/${event.returnValues.id}/show'>Link</a>` ; 
                             bot.telegram.sendPhoto(chatID,{ url: ImageUri},{ caption: myMessage, parse_mode: 'HTML'
                     })
@@ -3089,7 +3089,7 @@ function Connect(){
                         console.log(event.returnValues.id);
                         var myMessage = "<b>\u{1F4E2} Attention diamond handed Megafam!  </b>\n\n"
                             myMessage += "<b>\u{1F37C} MegaBaby Adopted!  </b>\n"
-                            myMessage += `<b>\u{1FAAA} ID: ${event.returnValues.id}   </b>\n`
+                            myMessage += `<b>\u{1F3AB} ID: ${event.returnValues.id}   </b>\n`
                             myMessage += `<b>\u{1F60E} Bought By: ${event.returnValues.buyer.substring(0, 8)}...  </b>\n`
                             myMessage += `<b>\u{1F4B0} For: ${parseFloat(Web3.utils.fromWei(event.returnValues.price, 'ether')).toFixed(3)} BNB  </b>\n\n`
                             var Stakedamt = await STAKINGCONTRACT.methods.balanceOf(event.returnValues.buyer).call()
