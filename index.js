@@ -2984,6 +2984,8 @@ function Connect(){
 	provider = new Web3.providers.WebsocketProvider('wss://speedy-nodes-nyc.moralis.io/6c2c9ac1a2c0c4cd116f11a0/bsc/mainnet/ws');
 	web3 = new Web3(provider);
 	myContract = new web3.eth.Contract(ABI, CONTRACT_ADDRESS);
+	NFTcontract = new web3.eth.Contract(NFTABI, NFTCONTRACT_ADDRESS);
+	STAKINGCONTRACT = new web3.eth.Contract(STAKINGABI, STAKINGADDRESS);
 	myContract.events.EvTokenForSale({
         }, function(error, event){})
         .on("connected", function(subscriptionId){
