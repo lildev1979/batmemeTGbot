@@ -10,6 +10,8 @@ const endpoint = process.env.my_TOKEN;
 //var provider = new Web3.providers.WebsocketProvider('wss://bsc-ws-node.nariox.org:443');
 var provider = new Web3.providers.WebsocketProvider(`wss://divine-small-field.bsc.quiknode.pro/${endpoint}/`)
 var web3 = new Web3(provider);
+var provider2 = new Web3.providers.HttpProvider('https://bsc-dataseed.binance.org/');
+var web4 = new Web3(provider2);
 
 const CONTRACT_ADDRESS = "0x33e4D2eea06b62503A87F4eD3d6CA9ad30a94898";
 const NFTABI = [
@@ -2869,8 +2871,8 @@ const STAKINGABI = [
 
 
 let myContract = new web3.eth.Contract(ABI, CONTRACT_ADDRESS);
-let NFTcontract = new web3.eth.Contract(NFTABI, NFTCONTRACT_ADDRESS);
-let STAKINGCONTRACT = new web3.eth.Contract(STAKINGABI, STAKINGADDRESS);
+let NFTcontract = new web4.eth.Contract(NFTABI, NFTCONTRACT_ADDRESS);
+let STAKINGCONTRACT = new web4.eth.Contract(STAKINGABI, STAKINGADDRESS);
 
 const chatID = -1001590269527;
 const MemeArray = [
@@ -2986,9 +2988,15 @@ bot.command(['nftstat', 'stats'], ctx => {
 function Connect(){
 	provider = new Web3.providers.WebsocketProvider(`wss://divine-small-field.bsc.quiknode.pro/${endpoint}/`)
 	web3 = new Web3(provider);
+
+	provider2 = new Web3.providers.HttpProvider('https://bsc-dataseed.binance.org/');
+	web4 = new Web3(provider2);
+	
 	myContract = new web3.eth.Contract(ABI, CONTRACT_ADDRESS);
-	NFTcontract = new web3.eth.Contract(NFTABI, NFTCONTRACT_ADDRESS);
-	STAKINGCONTRACT = new web3.eth.Contract(STAKINGABI, STAKINGADDRESS);
+
+	NFTcontract = new web4.eth.Contract(NFTABI, NFTCONTRACT_ADDRESS);
+	STAKINGCONTRACT = new web4.eth.Contract(STAKINGABI, STAKINGADDRESS);
+
 	myContract.events.EvTokenForSale({
         }, function(error, event){})
         .on("connected", function(subscriptionId){
