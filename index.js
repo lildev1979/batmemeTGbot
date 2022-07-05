@@ -3,9 +3,12 @@ const Web3 = require('web3');
 const https = require('https');
 
 require('dotenv').config(); //initialize dotenv
+
 const bot = new Telegraf(process.env.CLIENT_TOKEN);
+const endpoint = process.env.my_TOKEN;
+
 //var provider = new Web3.providers.WebsocketProvider('wss://bsc-ws-node.nariox.org:443');
-var provider = new Web3.providers.WebsocketProvider('wss://divine-small-field.bsc.quiknode.pro/d5ccad42e9f35c0432764dda7546d70aab466ac6/')
+var provider = new Web3.providers.WebsocketProvider(`wss://divine-small-field.bsc.quiknode.pro/${endpoint}/`)
 var web3 = new Web3(provider);
 
 const CONTRACT_ADDRESS = "0x33e4D2eea06b62503A87F4eD3d6CA9ad30a94898";
@@ -2981,7 +2984,7 @@ bot.command(['nftstat', 'stats'], ctx => {
 })
 
 function Connect(){
-	provider = new Web3.providers.WebsocketProvider('wss://divine-small-field.bsc.quiknode.pro/d5ccad42e9f35c0432764dda7546d70aab466ac6/');
+	provider = new Web3.providers.WebsocketProvider(`wss://divine-small-field.bsc.quiknode.pro/${endpoint}/`)
 	web3 = new Web3(provider);
 	myContract = new web3.eth.Contract(ABI, CONTRACT_ADDRESS);
 	NFTcontract = new web3.eth.Contract(NFTABI, NFTCONTRACT_ADDRESS);
